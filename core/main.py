@@ -12,6 +12,12 @@ app = Flask(__name__)
 VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN")
 
 
+@app.route("/", methods=["GET"])
+def index():
+    message = environ.os.get("MESSAGE")
+    return jsonify({"status": "success", "message": message})
+
+
 @app.route("/webhook", methods=["GET", "POST"])
 def webhook():
     if request.method == "GET":
