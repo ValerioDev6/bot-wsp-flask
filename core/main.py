@@ -14,7 +14,7 @@ VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN")
 
 @app.route("/", methods=["GET"])
 def index():
-    message = environ.os.get("MESSAGE")
+    message = os.environ.get("MESSAGE")
     return jsonify({"status": "success", "message": message})
 
 
