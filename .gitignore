@@ -1,0 +1,41 @@
+# Variables de entorno - NUNCA subir tokens
+.env
+.env.local
+.env.production
+
+# Entornos virtuales de Python
+.venv/
+venv/
+env/
+ENV/
+core/.env
+
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Coverage reports
+htmlcov/
+.coverage
+.pytest_cache/
