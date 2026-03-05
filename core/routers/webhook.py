@@ -87,60 +87,44 @@ def get_main_menu() -> str:
 
 
 async def handle_catalog(from_number: str) -> str:
-    products = await fetch_products("ecommerce/filter-advance-product", {"page": 1, "limit": 5})
+    return """🛍️ Catálogo de Productos
 
-    if not products:
-        return "⚠️ No se pudieron cargar los productos. Intenta más tarde."
+Tenemos miles de productos para tu celular: fundas, cargadores, audífonos, keyboards y más.
 
-    message = "🛍️ Catálogo iCase Store\n\n"
+🔗 Visita nuestro catálogo completo:
+https://icase-store-peru.netlify.app/catalog
 
-    for product in products:
-        name = product.get("name", "Producto sin nombre")
-        price = product.get("price", 0)
-        url = product.get("url", "https://icase-store-peru.netlify.app/catalog")
-        message += f"• {name} - S/. {price:.2f} 🔗 {url}\n"
-
-    message += "\n¿Te interesa alguno? Visita nuestro catálogo completo 👆\n\nEscribe menu para volver"
-    return message
+Escribe menu para volver"""
 
 
 async def handle_offers(from_number: str) -> str:
-    products = await fetch_products(
-        "ecommerce/filter-advance-product",
-        {"options_aditional[]": "campaing", "page": 1, "limit": 5}
-    )
+    return """🔥 Ofertas y Descuentos
 
-    if not products:
-        return "⚠️ No se pudieron cargar las ofertas. Intenta más tarde."
+¡Aprovecha nuestras promociones y campañas exclusivas!
 
-    message = "🔥 Ofertas y Descuentos\n\n"
+🔗 Ver descuentos:
+https://icase-store-peru.netlify.app/discount/69a08d6f2a9fd
 
-    for product in products:
-        name = product.get("name", "Producto sin nombre")
-        price = product.get("price", 0)
-        discount = product.get("discount", 0)
-        sale_price = price - (price * discount / 100) if discount else price
-        url = product.get("url", "https://icase-store-peru.netlify.app/discount/69a08d6f2a9fd")
-
-        if discount:
-            message += f"• {name} - S/. {price:.2f} S/. {sale_price:.2f} ({discount}% off) 🔗 {url}\n"
-        else:
-            message += f"• {name} - S/. {sale_price:.2f} 🔗 {url}\n"
-
-    message += "\nEscribe menu para volver"
-    return message
+Escribe menu para volver"""
 
 
 async def handle_best_rated(from_number: str) -> str:
     products = await fetch_products(
         "ecommerce/filter-advance-product",
-        {"options_aditional[]": "review", "page": 1, "limit": 5}
+        {"page": 1, "limit": 12, "search": "", "options_aditional[]": "review"}
     )
 
     if not products:
-        return "⚠️ No se pudieron cargar los productos. Intenta más tarde."
+        return """⭐ Productos Mejor Valorados
 
-    message = "⭐ Productos Mejor Valorados\n\n"
+Ver las reseñas y valoraciones de nuestros clientes.
+
+🔗 Ver productos mejor valorados:
+https://icase-store-peru.netlify.app/catalog
+
+Escribe menu para volver"""
+
+    message = "⭐ Productos con Mejores Reseñas\n\n"
 
     for product in products:
         name = product.get("name", "Producto sin nombre")
