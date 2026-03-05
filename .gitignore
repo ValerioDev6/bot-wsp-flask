@@ -39,3 +39,8 @@ logs/
 htmlcov/
 .coverage
 .pytest_cache/
+
+
+.agents
+skills-lock.json
+AGENTS.md
